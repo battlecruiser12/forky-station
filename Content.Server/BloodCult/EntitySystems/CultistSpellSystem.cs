@@ -125,13 +125,14 @@ public sealed partial class CultistSpellSystem : EntitySystem
 			RemoveSpell(GetSpell(actionComp.AbilityId), ent.Comp);
 		}
 
+        var damageDict = _damageableSystem.GetDamagePerGroup(ent.Owner);
 		// apply damage
 		if (actionComp.HealthCost > 0 && TryComp<DamageableComponent>(ent, out var damageable))
 		{
 			DamageSpecifier appliedDamageSpecifier;
-			if (damageable.Damage.DamageDict.ContainsKey("Bloodloss"))
+			if (damageDict.ContainsKey("Bloodloss"))
 				appliedDamageSpecifier = new DamageSpecifier(_proto.Index(BloodlossDamageType), FixedPoint2.New(actionComp.HealthCost));
-			else if (damageable.Damage.DamageDict.ContainsKey("Shock"))
+			else if (damageDict.ContainsKey("Shock"))
 				appliedDamageSpecifier = new DamageSpecifier(_proto.Index(ShockDamageType), FixedPoint2.New(actionComp.HealthCost));
 			else
 				appliedDamageSpecifier = new DamageSpecifier(_proto.Index(SlashDamageType), FixedPoint2.New(actionComp.HealthCost));

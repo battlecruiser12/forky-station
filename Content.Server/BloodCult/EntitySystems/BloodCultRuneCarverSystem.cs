@@ -427,7 +427,9 @@ public sealed partial class BloodCultRuneCarverSystem : EntitySystem
 
 		// Apply bloodloss damage + bleeding + slashing damage when drawing runes
 		DamageSpecifier appliedDamageSpecifier;
-		if (ent.Comp.Damage.DamageDict.ContainsKey("Bloodloss"))
+
+		// TODO: it would be nice if this wasnt a hardcoded damage specificer ? maybe.
+		if (_damageableSystem.CanBeDamagedBy(ent.Owner, "Bloodloss"))
 		{
 			// Organic entities: bloodloss + slash damage
 			appliedDamageSpecifier = new DamageSpecifier();
@@ -441,7 +443,7 @@ public sealed partial class BloodCultRuneCarverSystem : EntitySystem
 				_bloodstream.TryModifyBleedAmount(bloodstreamEnt, ev.BleedOnCarve / 10f);
 			}
 		}
-		else if (ent.Comp.Damage.DamageDict.ContainsKey(ShockDamageType.Id))
+		else if (_damageableSystem.CanBeDamagedBy(ent.Owner,ShockDamageType.Id))
 			appliedDamageSpecifier = new DamageSpecifier(_protoMan.Index(ShockDamageType), FixedPoint2.New(ev.BleedOnCarve));
 		else
 			appliedDamageSpecifier = new DamageSpecifier(_protoMan.Index(SlashDamageType), FixedPoint2.New(ev.BleedOnCarve));

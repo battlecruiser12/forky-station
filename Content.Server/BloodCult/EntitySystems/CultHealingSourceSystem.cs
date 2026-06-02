@@ -347,8 +347,9 @@ public sealed partial class CultHealingSourceSystem : EntitySystem
 		if (TryComp<DamageableComponent>(uid, out var damageable))
 		{
 			var keys = new List<string>();
+            var damageDict = _damageableSystem.GetDamagePerGroup(uid);
 
-			foreach (var item in damageable.Damage.DamageDict)
+			foreach (var item in damageDict)
 			{
 				if (item.Value > 0)
 					keys.Add(item.Key);

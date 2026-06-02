@@ -66,7 +66,7 @@ public sealed partial class JuggernautBloodAbsorptionSystem : EntitySystem
 				continue;
 
 			// Check if juggernaut has more than the threshold damage
-			var totalDamage = damageable.Damage.GetTotal();
+            var totalDamage = _damageable.GetTotalDamage(uid);
 			if (totalDamage <= MinDamageThreshold)
 				continue;
 
@@ -149,7 +149,7 @@ public sealed partial class JuggernautBloodAbsorptionSystem : EntitySystem
 
 			// Heal the juggernaut 1:1 (1 unit blood = 1 unit total healing)
 			// Heal all damage types proportionally based on current damage
-			var currentDamage = damageable.Damage;
+            var currentDamage = _damageable.GetAllDamage(uid);
 			var totalCurrentDamage = currentDamage.GetTotal();
 			var healAmount = absorbAmount.Float();
 			var healDamage = new DamageSpecifier();

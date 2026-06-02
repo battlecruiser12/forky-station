@@ -135,8 +135,9 @@ public sealed partial class BloodCultistReactionSystem : EntitySystem
 			return;
 
 		// Get the amount of holy damage
-		if (!damageable.Damage.DamageDict.TryGetValue("Holy", out var holyDamage) || holyDamage <= 0)
-			return;
+        var damageDict = _damageable.GetDamagePerGroup(uid);
+        if (!damageDict.TryGetValue("Holy", out var holyDamage) || holyDamage <= 0)
+            return;
 
 		// Calculate healing amount based on Unholy Blood quantity
 		// 5u of Unholy Blood heals 1 point of holy damage
