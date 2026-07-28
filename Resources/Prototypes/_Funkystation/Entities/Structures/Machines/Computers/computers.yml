@@ -5,6 +5,7 @@
   description: A computer used to make station wide announcements via keyboard, set the appropriate alert level, and call the emergency shuttle.
   components:
   - type: Sprite
+    sprite: _Funkystation/Structures/Machines/computers.rsi
     layers:
     - map: ["computerLayerBody"]
       state: computer
@@ -37,6 +38,7 @@
   description: A computer used to make station wide announcements via keyboard, set the appropriate alert level, and call the emergency shuttle.
   components:
   - type: Sprite
+    sprite: _Funkystation/Structures/Machines/computers.rsi
     layers:
     - map: ["computerLayerBody"]
       state: computer
@@ -69,6 +71,7 @@
   description: A computer used to make station wide announcements via keyboard, set the appropriate alert level, and call the emergency shuttle.
   components:
   - type: Sprite
+    sprite: _Funkystation/Structures/Machines/computers.rsi
     layers:
     - map: ["computerLayerBody"]
       state: computer
@@ -101,6 +104,7 @@
   description: A computer used to make station wide announcements via keyboard, set the appropriate alert level, and call the emergency shuttle.
   components:
   - type: Sprite
+    sprite: _Funkystation/Structures/Machines/computers.rsi
     layers:
     - map: ["computerLayerBody"]
       state: computer
@@ -133,6 +137,7 @@
   description: A computer used to make station wide announcements via keyboard, set the appropriate alert level, and call the emergency shuttle.
   components:
   - type: Sprite
+    sprite: _Funkystation/Structures/Machines/computers.rsi
     layers:
     - map: ["computerLayerBody"]
       state: computer
@@ -165,6 +170,7 @@
   description: A computer used to make station wide announcements via keyboard, set the appropriate alert level, and call the emergency shuttle.
   components:
   - type: Sprite
+    sprite: _Funkystation/Structures/Machines/computers.rsi
     layers:
     - map: ["computerLayerBody"]
       state: computer
