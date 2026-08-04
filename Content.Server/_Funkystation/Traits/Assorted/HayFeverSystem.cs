@@ -61,11 +61,11 @@ public sealed partial class HayFeverSystem : EntitySystem
         }
 
     }
-        /// <summary>
-        /// If enough time has passed since the last allergic reaction, attempts to roll an allergic reaction.
-        /// </summary>
-        /// <param name="uid"></param>
-        /// <param name="allergy"></param>
+    /// <summary>
+    /// If enough time has passed since the last allergic reaction, attempts to roll an allergic reaction.
+    /// </summary>
+    /// <param name="uid">the unique ID of the player character.</param>
+    /// <param name="allergy">The instanced HayFeverComponent of the player character.</param>
     private void AllergicReaction(EntityUid uid, HayFeverComponent allergy)
     {
 
@@ -75,19 +75,19 @@ public sealed partial class HayFeverSystem : EntitySystem
         allergy.ReactionType = _random.Next(0, 25);
         switch (allergy.ReactionType)
         {
-            case >= 0 and <= 10:
-                break;
-            case >= 11 and <= 12:
+            // If 0-10 is rolled, nothing happens, this is intended behavior to make allergic reaction less predictable.
+
+            case >= 11 and <= 12: // Itchy nose
                 _popup.PopupEntity(Loc.GetString("trait-hayfever-popup1"), uid, uid, PopupType.Medium);
                 break;
-            case 14:
+            case >= 13 and <= 14: // Itchy eyes
                 _popup.PopupEntity(Loc.GetString("trait-hayfever-popup2"), uid, uid,  PopupType.Medium);
                 break;
-            case >= 17 and <= 22:
+            case >= 15 and <= 22: // One sneeze
                 _popup.PopupEntity(Loc.GetString("trait-hayfever-popup3"), uid, uid, PopupType.MediumCaution);
                 allergy.SneezesQueued = 1;
                 break;
-            case >= 23 and <= 24:
+            case >= 23: // Sneeze attack consisting of 2-4 sneezes
                 _popup.PopupEntity(Loc.GetString("trait-hayfever-popup4"), uid, uid, PopupType.LargeCaution);
                 allergy.SneezesQueued = _random.Next(2,5);
                 break;
@@ -102,11 +102,11 @@ public sealed partial class HayFeverSystem : EntitySystem
 
 
     }
-        /// <summary>
-        /// If enough time has passed since a sneeze was queued, and at least one sneeze is queued, sneezes once and subtracts 1 from the number of sneezes queued.
-        /// </summary>
-        /// <param name="uid"></param>
-        /// <param name="allergy"></param>
+    /// <summary>
+    /// If enough time has passed since a sneeze was queued, and at least one sneeze is queued, sneezes once and subtracts 1 from the number of sneezes queued.
+    /// </summary>
+    /// <param name="uid">The unique ID of the player character.</param>
+    /// <param name="allergy">The instanced HayFeverComponent of the player character.</param>
     private void Sneeze(EntityUid uid, HayFeverComponent allergy)
     {
         if (allergy.TimeSinceReaction <= allergy.NextSneezeTime || allergy.SneezesQueued < 1)
