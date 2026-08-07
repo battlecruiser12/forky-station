@@ -37,7 +37,7 @@ public sealed partial class HayFeverSystem : EntitySystem
     /// <summary>
     ///  Updates the HayFeverSystem
     /// </summary>
-    /// <param name="frameTime"></param>
+    /// <param name="frameTime">Time in seconds covered by the current game tick.</param>
     public override void Update(float frameTime)
     {
         base.Update(frameTime);
