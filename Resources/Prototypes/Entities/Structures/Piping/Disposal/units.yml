@@ -20,15 +20,15 @@
   - type: Climbable
     vaultable: false
   - type: Sprite
-    sprite: Structures/Piping/disposal.rsi
+    sprite: _Funkystation/Structures/Piping/disposal.rsi
     layers:
     - map: [ "enum.DisposalUnitVisualLayers.Base" ]
       state: disposal
     - map: [ "enum.DisposalUnitVisualLayers.OverlayFlushing" ]
-      state: disposal
+      state: disposal-flush
       visible: false
     - map: [ "enum.DisposalUnitVisualLayers.OverlayCharging" ]
-      state: dispover-ready
+      state: mailover-holo
     - map: [ "enum.DisposalUnitVisualLayers.OverlayFull" ]
       state: dispover-full
       visible: false
@@ -52,7 +52,7 @@
       enum.DisposalUnitVisuals.IsCharging:
         enum.DisposalUnitVisualLayers.OverlayCharging:
           True: { state: dispover-charge, visible: true }
-          False: { state: dispover-ready, visible: true }
+          False: { state: mailover-holo, visible: true }
       enum.DisposalUnitVisuals.IsFull:
         enum.DisposalUnitVisualLayers.OverlayFull:
           True: { visible: true }
@@ -121,7 +121,7 @@
   name: disposal unit
   components:
   - type: Sprite
-    sprite: Structures/Piping/disposal.rsi
+    sprite: _Funkystation/Structures/Piping/disposal.rsi
     snapCardinals: true
   - type: Construction
     graph: DisposalMachine
@@ -145,7 +145,7 @@
   description: A pneumatic mail delivery unit.
   components:
   - type: Sprite
-    sprite: Structures/Piping/disposal.rsi
+    sprite: _Funkystation/Structures/Piping/disposal.rsi
     layers:
     - map: [ "enum.DisposalUnitVisualLayers.Base" ]
       state: mailing
@@ -159,7 +159,7 @@
       state: mailing-flush
       visible: false
     - map: [ "enum.DisposalUnitVisualLayers.OverlayEngaged" ]
-      state: mailover-handle
+      state: dispover-handle
   - type: GenericVisualizer
     visuals:
       enum.DisposalUnitVisuals.IsFlushing:
@@ -172,8 +172,8 @@
           False: { state: mailing-charging }
       enum.DisposalUnitVisuals.IsEngaged:
         enum.DisposalUnitVisualLayers.OverlayEngaged:
-          True: { state: mailover-handle }
-          False: { state: mailover-handle-off }
+          True: { state: dispover-handle }
+          False: { state: dispover-handle }
       enum.DisposalUnitVisuals.IsCharging:
         enum.DisposalUnitVisualLayers.OverlayCharging:
           True: { visible: true }
