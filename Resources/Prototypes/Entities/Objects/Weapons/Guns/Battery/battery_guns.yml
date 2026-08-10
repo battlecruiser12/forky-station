@@ -169,7 +169,7 @@
   name: retro laser blaster
   parent: [BaseWeaponBatterySmall, BaseMajorContraband]
   id: WeaponLaserGun
-  description: An older and defunct model of the sectech laser blaster. It was allegedly taken out of service after a malfunction resulted in the disintegration of the cadet wielding it. Allegedly.
+  description: An older model of the now defunct line of the sectech™ laser blaster. Rumors say it went defunct after a incident when a cadet misfired and melted a centcomm offical's brain.
   components:
   - type: Sprite
     sprite: _Funkystation/Objects/Weapons/Guns/Battery/laser_retro.rsi
