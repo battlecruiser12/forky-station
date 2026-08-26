@@ -1,0 +1,18 @@
+﻿- type: reagent
+  id: BeesKnees
+  name: reagent-name-bees-knees
+  parent: BaseAlcohol
+  desc: reagent-desc-bees-knees
+  physicalDesc: reagent-physical-desc-sweet
+  flavor: beesknees
+  color: "#fff089"
+  metamorphicSprite:
+    sprite: _Funkystation/Objects/Consumable/Drinks/beesknees.rsi
+    state: icon_empty
+  metamorphicMaxFillLevels: 4
+  metamorphicFillBaseName: fill-
+  metamorphicChangeColor: false
+  metabolisms:
+    Digestion:
+      metabolites:
+        Ethanol: 0.2

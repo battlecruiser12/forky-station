@@ -1,0 +1,4 @@
+﻿- type: flavor
+  id: beesknees
+  flavorType: Complex
+  description: flavor-complex-bees-knees

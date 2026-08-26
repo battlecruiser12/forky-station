@@ -1,0 +1,13 @@
+﻿- type: entity
+  parent: DrinkGlass
+  id: DrinkBeesKnees
+  suffix: bees knees
+  components:
+  - type: Solution
+    solution:
+      reagents:
+      - ReagentId: BeesKnees
+        Quantity: 60
+  - type: Icon
+    sprite: _Funkystation/Objects/Consumable/Drinks/beesknees.rsi
+    state: icon
