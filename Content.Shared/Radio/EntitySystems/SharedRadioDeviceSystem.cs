@@ -1,6 +1,7 @@
 using Content.Shared.Actions;
 using Content.Shared.Interaction;
 using System.Linq;
+using Content.Shared._Funkystation.Communications;
 using Content.Shared._Funkystation.Radio;
 using Content.Shared.Chat;
 using Content.Shared.Examine;
@@ -8,7 +9,8 @@ using Content.Shared.Popups;
 using Content.Shared.Power;
 using Content.Shared.Power.EntitySystems;
 using Content.Shared.Radio.Components;
-using Content.Shared.Timing;
+using Content.Shared.Timing.Systems;
+using Content.Shared.Timing.Components;
 using Content.Shared.Verbs;
 using Robust.Shared.Utility;
 using Content.Shared.Speech;
@@ -412,7 +414,7 @@ public abstract partial class SharedRadioDeviceSystem : EntitySystem
                     var proto = ProtoMan.Index(channel);
                     // visually mimicking intercoms / encryption key holders
                     args.PushMarkup(Loc.GetString("handheld-radio-component-freq",
-                        ("color", proto.Color),
+                        ("protoID", proto.ID), // add radio channel tags to allow color customization by the player
                         ("id", proto.LocalizedName),
                         ("freq", proto.Frequency)));
                 }
@@ -422,7 +424,7 @@ public abstract partial class SharedRadioDeviceSystem : EntitySystem
             {
                 var proto = ProtoMan.Index(ent.Comp.Channels.FirstOrDefault());
                 args.PushMarkup(Loc.GetString("handheld-radio-component-speaker-freq",
-                    ("color", proto.Color),
+                    ("protoID", proto.ID), // add radio channel tags to allow color customization by the player
                     ("id", proto.LocalizedName),
                     ("freq", proto.Frequency)));
             }
@@ -453,7 +455,7 @@ public abstract partial class SharedRadioDeviceSystem : EntitySystem
                 ("micState", state),
                 ("color", color)));
             args.PushMarkup(Loc.GetString("handheld-radio-component-mic-freq-examine",
-                ("color", proto.Color),
+                ("protoID", proto.ID), // add radio channel tags to allow color customization by the player
                 ("id", proto.LocalizedName),
                 ("freq", proto.Frequency)));
         }
@@ -468,6 +470,9 @@ public abstract partial class SharedRadioDeviceSystem : EntitySystem
     {
         if (HasComp<RadioSpeakerComponent>(args.Source))
             return; // no feedback loops please.
+
+        if (HasComp<PAAnnouncerComponent>(args.Source)) // funky TODO: any better fix?
+            return;
 
         var channel = ProtoMan.Index(ent.Comp.BroadcastChannel);
         if (_recentlySent.Add((args.Message, args.Source, channel)))
